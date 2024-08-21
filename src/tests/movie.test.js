@@ -28,6 +28,16 @@ test('POST -> URL_BASE, should return statusCode 201 and res.body.name === movie
     expect(res.body.name).toBe(movie.name) 
  });
  
+ test('GET-> URL_BASE, should return statusCode 200 and res.body.length === 1', async() => { 
+
+    const res = await request(app)
+        .get(`${URL_BASE}`) 
+    
+    expect(res.status).toBe(200)
+    expect(res.body).toBeDefined()
+    expect(res.body.length).toBe(1)
+  });
+
  test('GET-> URL_BASE/movieId, should return statusCode 200 and res.body.name === movie.name', async() => { 
 
     const res = await request(app)
@@ -38,7 +48,7 @@ test('POST -> URL_BASE, should return statusCode 201 and res.body.name === movie
     expect(res.body.name).toBe(movie.name)
   });
   
-test('PUT-> URL_BASE/movieId, should return statusCode 200 and res.body.name === movie.name', async() => { 
+test('PUT-> URL_BASE/movieId, should return statusCode 200 and res.body.name === movieUp.name', async() => { 
     
     const movieUp = {
         name: "Jhon"

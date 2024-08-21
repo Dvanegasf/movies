@@ -26,6 +26,17 @@ test('POST -> URL_BASE, should return statusCode 201 and res.body.firstName === 
     expect(res.body.firstName).toBe(actor.firstName) 
  });
 
+ test('GET-> URL_BASE, should return statusCode 200 and res.body.length === 1', async() => { 
+
+    const res = await request(app)
+        .get(`${URL_BASE}`) 
+    
+    expect(res.status).toBe(200)
+    expect(res.body).toBeDefined()
+    expect(res.body.length).toBe(1)
+  });
+
+
  test('GET-> URL_BASE/actorId, should return statusCode 200 and res.body.firstName === actor.firstName', async() => { 
 
     const res = await request(app)
@@ -36,7 +47,7 @@ test('POST -> URL_BASE, should return statusCode 201 and res.body.firstName === 
     expect(res.body.firstName).toBe(actor.firstName)
   });
   
-test('PUT-> URL_BASE/actorId, should return statusCode 200 and res.body.firstName === actor.firstName', async() => { 
+test('PUT-> URL_BASE/actorId, should return statusCode 200 and res.body.firstName === actorUp.firstName', async() => { 
     
     const actorUp = {
         firstName: "Jhon"
